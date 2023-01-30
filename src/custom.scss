@@ -1,0 +1,28 @@
+$theme-colors: (
+    "primary": #97b9fc,
+    "danger": #FF5001,
+    "warning": #FF8B00,
+    "info": #695DEF,
+    "success": green
+);
+
+@import "~bootstrap/scss/bootstrap";
+
+html,
+body {
+    background-color: #212529 !important;
+}
+
+label.form-label {
+    color: rgb(178, 178, 178);
+}
+
+.form-control,
+.form-select {
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    border: unset;
+    border-radius: 15px;
+    padding: 16px 10px 16px 10px;
+}
