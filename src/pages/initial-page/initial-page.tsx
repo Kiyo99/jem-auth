@@ -21,7 +21,7 @@ function InitialPage() {
         }
 
         try {
-            const res = await fetch('http://localhost:3000/api/register',
+            const res = await fetch('https://tindog-jo6x.onrender.com/api/register',
                 {
                     method: "POST",
                     headers: {
