@@ -7,23 +7,23 @@ function WorkStudy() {
 
     const [students, setStudents] = useState<any[]>([]);
 
-    const getStudents = async () => {
-        try {
-
-            const res = await fetch('http://localhost:3001/api/work_study/applicants')
-            const student = await res.json();
-            setStudents(student);
-
-        } catch (error) {
-            console.log(`Error: ${error}`);
-        }
-    }
-
-
     useEffect(() => {
+        const getStudents = async () => {
+            try {
+
+                const res = await fetch('http://localhost:3001/api/work_study/applicants')
+                const student = await res.json();
+                setStudents(student);
+                console.log(`Stttt: ${students}`);
+
+
+            } catch (error) {
+                console.log(`Error: ${error}`);
+            }
+        }
         getStudents();
         console.log(`Students: ${students}`);
-    }, []);
+    }, [students]);
 
 
     return (
@@ -37,10 +37,18 @@ function WorkStudy() {
             <ul>Search students within jurisdiction and see details like gpa</ul> */}
 
             <Container fluid className="p-1">
+
+                <div>
+                    {students.length === 0 ?
+                        <></> :
+                        <h1>Applicants</h1>
+                    }
+                </div>
+
                 <Row className="p-3">
                     {
                         students.map(student => <>
-                            <Card style={{ width: '18rem', color: 'black', margin: '10px' }}>
+                            <Card style={{ width: '18rem', color: 'white', margin: '10px', backgroundColor: 'grey' }}>
                                 {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                                 <Card.Body>
                                     <Card.Title>{student.ID}</Card.Title>
@@ -49,7 +57,9 @@ function WorkStudy() {
                                     </Card.Text>
                                     <Button variant="success" className="me-3">Approve</Button>
 
-                                    <Button variant="danger">Decline</Button>
+                                    <Button variant="danger" className="">Decline</Button>
+                                    {/* <Button variant="info">View more</Button> */}
+
                                 </Card.Body>
                             </Card>
                             {/* <h3 className="text-white">{student.Applicant}</h3>
@@ -61,55 +71,6 @@ function WorkStudy() {
                     }
                 </Row>
             </Container>
-
-            <Col className="col-lg-4 col-md-6 p-3">
-                <Row>
-                    {
-                        students.map(student => <>
-                            <Card style={{ width: '18rem', color: 'black' }}>
-                                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                                <Card.Body>
-                                    <Card.Title>{student.ID}</Card.Title>
-                                    <Card.Text>
-                                        {student.Applicant} applied for {student.Position}
-                                    </Card.Text>
-                                    <Button variant="success">Approve</Button>
-
-                                    <Button variant="danger">Decline</Button>
-                                </Card.Body>
-                            </Card>
-                            {/* <h3 className="text-white">{student.Applicant}</h3>
-                    <h5 className="text-white">{student.ID}</h5>
-                    <h5 className="text-white">{student.Position}</h5> */}
-                            <br />
-                        </>
-                        )
-                    }
-                </Row>
-            </Col>
-
-
-            {
-                students.map(student => <>
-                    <Card style={{ width: '18rem', color: 'black' }}>
-                        {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                        <Card.Body>
-                            <Card.Title>{student.ID}</Card.Title>
-                            <Card.Text>
-                                {student.Applicant} applied for {student.Position}
-                            </Card.Text>
-                            <Button variant="success">Approve</Button>
-
-                            <Button variant="danger">Decline</Button>
-                        </Card.Body>
-                    </Card>
-                    {/* <h3 className="text-white">{student.Applicant}</h3>
-                    <h5 className="text-white">{student.ID}</h5>
-                    <h5 className="text-white">{student.Position}</h5> */}
-                    <br />
-                </>
-                )
-            }
 
         </Container>
 
